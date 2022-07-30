@@ -48,13 +48,18 @@ app.delete("/api/delete/:movie", (req, res)=>{
   });
 });
 
-app.put("/api/update", (req, res)=>{
-  const name = req.body.movie;
-  const review = req.body.rating;
-  const sqlUpdate = 
-  "UPDATE movie SET movie = ? WHERE movieName = ?";
 
-  db.query(sqlUpdate,[review, name], (err,result) =>{
+
+app.put("/api/update", (req, res)=>{
+  const movie = req.body.movie;
+  const rating = req.body.rating;
+  const cast = req.body.cast;
+  const genre = req.body.genre;
+  const Releasedate = req.body.Releasedate;
+
+
+  const sqlUpdate = "UPDATE movie SET movie = ?,rating= ?, cast= ?,genre= ?,Releasedate= ? WHERE movie = ?";
+  db.query(sqlUpdate,[movie, rating,cast,genre,Releasedate], (err,result) =>{
     if (err) console.log(err);
   });
 });
